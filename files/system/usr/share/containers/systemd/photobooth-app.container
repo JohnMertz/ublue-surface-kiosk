@@ -1,0 +1,15 @@
+[Unit]
+Description=Photobooth Web Application
+After=network-online.target
+Wants=network-online.target
+
+[Container]
+Image=ghcr.io/johnmertz/photobooth-app:latest
+PublishPort=8000:8000
+Pull=newer
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,6 @@
+if ! podman image exists localhost/kiosk:latest
+then
+    podman build \
+        -t localhost/kiosk:latest \
+        /usr/share/podman/kiosk-docker
+fi

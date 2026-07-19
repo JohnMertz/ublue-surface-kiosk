@@ -1,0 +1,36 @@
+#!/usr/bin/sh
+
+EXECDIR="$HOME/.local/bin"
+
+if [ ! -e "$EXECDIR/gnome-kiosk-script" ]; then
+    mkdir -p "$EXECDIR" "$HOME/.config"
+
+    cat > "$EXECDIR/gnome-kiosk-script" <<'EOF'
+#!/bin/bash
+
+# Start photoboth app
+systemctl --user start photobooth-app-container.service
+
+# Wait for photoboth app to start up
+until curl -fs http://127.0.0.1:8000/ >/dev/null 2>&1; do
+  sleep 1
+done
+
+# Run photobooth app in Zen browser
+exec flatpak --user run org.zen_browser.zen \
+    --kiosk \
+    http://127.0.0.1:8000
+EOF
+
+    chmod +x "$EXECDIR/gnome-kiosk-script"
+    touch "$HOME/.config/gnome-initial-setup-done"
+fi
+
+# Copy and run the script from the runtime directory if available
+if [ -d "$XDG_RUNTIME_DIR" ]; then
+    cp "$EXECDIR/gnome-kiosk-script" "$XDG_RUNTIME_DIR/"
+    chmod +x "$XDG_RUNTIME_DIR/gnome-kiosk-script"
+    EXECDIR="$XDG_RUNTIME_DIR"
+fi
+
+exec "$EXECDIR/gnome-kiosk-script" "$@"

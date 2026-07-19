@@ -1,0 +1,11 @@
+[Unit]
+Description=Start photobooth container
+Requires=photobooth-app.service
+After=photobooth-app.service
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+
+[Install]
+WantedBy=default.target
