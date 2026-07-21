@@ -31,6 +31,8 @@ modules:
         - kernel-core
         - kernel-modules
         - kernel-modules-extra
+        - libwacom
+        - libwacom-data
     install:
       packages:
         - curl
