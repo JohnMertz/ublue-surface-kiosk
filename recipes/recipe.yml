@@ -32,6 +32,7 @@ modules:
         - kernel-modules
         - kernel-modules-extra
     install:
+      allow-erasing: true
       packages:
         - curl
         - gnome-kiosk
