@@ -37,7 +37,10 @@ modules:
         - curl
         - gnome-kiosk
         - gnome-kiosk-script-session
+        - gphoto2
         - libcamera
+        - libcamera-qcam
+        - libgphoto2
         - kernel-surface
         - kernel-surface-core
         - kernel-surface-modules
