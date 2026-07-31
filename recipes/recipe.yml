@@ -38,15 +38,19 @@ modules:
         - gnome-kiosk
         - gnome-kiosk-script-session
         - gphoto2
+        - iptsd
         - libcamera
+        - libcamera-gstreamer
+        - libcamera-ipa
+        - libcamera-tools
         - libcamera-qcam
         - libgphoto2
+        - libwacom-surface
         - kernel-surface
         - kernel-surface-core
         - kernel-surface-modules
         - kernel-surface-modules-extra
-        - iptsd
-        - libwacom-surface
+        - pipewire-plugin-libcamera
 
   - type: default-flatpaks
     configurations:
